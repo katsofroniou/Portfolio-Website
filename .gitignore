@@ -1,0 +1,8 @@
+# Venv
+venv
+
+# VSCode settings
+.vscode
+
+# React
+node_modules
