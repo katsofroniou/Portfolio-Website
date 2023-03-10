@@ -47,7 +47,7 @@
 			<div class="screen-content">
 				<div class="screen-user">
 					<span class="content" data-value="PROJECTS">
-						<a href="/about">PROJECTS</a>
+						<a href="/projects">PROJECTS</a>
 					</span>
 				</div>
 			</div>
