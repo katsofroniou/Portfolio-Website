@@ -4,55 +4,68 @@
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
+	<style type="text/css">
+		body {
+			--primary-rgb: rgb(255, 118, 164);
+			--border-test: black;
+			background-color: rgb(255, 227, 241);
+		}
+	</style>
 </svelte:head>
 
-<section style="display: flex; gap: 1rem;">
-	<div class="screen">
-		<div class="screen-img" />
-		<div class="screen-overlay" />
-		<div class="screen-content">
-			<div class="screen-user">
-				<span class="about" data-value="ABOUT">
-					<a href="/about">ABOUT</a>
-				</span>
+<main>
+	<section>
+		<div class="screen">
+			<div class="screen-img" />
+			<div class="screen-overlay" />
+			<div class="screen-content">
+				<div class="screen-user">
+					<span class="content" data-value="ABOUT">
+						<a href="/about">ABOUT</a>
+					</span>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="screen">
-		<div class="screen-img" />
-		<div class="screen-overlay" />
-		<div class="screen-content">
-			<div class="screen-user">
-				<span class="about" data-value="ABOUT">
-					<a href="/about">ABOUT</a>
-				</span>
+		<div class="screen">
+			<div class="screen-img" />
+			<div class="screen-overlay" />
+			<div class="screen-content">
+				<div class="screen-user">
+					<span class="content" data-value="CONTACTS">
+						<div class="social">
+							<a href="https://github.com/katsofroniou/">GITHUB</a>
+							<a href="https://www.linkedin.com/in/katerina-sofroniou-319aba244/">LINKEDIN</a>
+							<a href="/contact">CONTACT ME</a>
+						</div>
+					</span>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="screen">
-		<div class="screen-img" />
-		<div class="screen-overlay" />
-		<div class="screen-content">
-			<div class="screen-user">
-				<span class="about" data-value="ABOUT">
-					<a href="/about">ABOUT</a>
-				</span>
+		<div class="screen">
+			<div class="screen-img" />
+			<div class="screen-overlay" />
+			<div class="screen-content">
+				<div class="screen-user">
+					<span class="content" data-value="PROJECTS">
+						<a href="/about">PROJECTS</a>
+					</span>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</main>
 
 <style>
-	.screen {
-		width: 500px;
+	.social {
 		display: flex;
-		border: 3px solid rgba(var(--primary-rgb), 0.8);
-		aspect-ratio: 10 / 16;
-		border-radius: 1rem;
-		background-color: rgba(var(--primary-rgb), 0.15);
-		overflow: hidden;
-		position: relative;
-		z-index: 10;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+
+	.social a {
+		margin: 1rem 0;
 	}
 
 	@keyframes pan-image {
@@ -102,18 +115,84 @@
 		}
 	}
 
-	.screen > .screen-img {
-		background-image: url("https://images.unsplash.com/photo-1463043254199-7a3efd782ad1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80");
-		height: 100%;
-		width: 100%;
+	section {
+		border: none;
+		display: flex;
+		gap: 1rem;
+		background-size: auto;
+	}
+
+	main {
+		margin: 0;
+		padding: 0;
+	}
+
+	.screen > .screen-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-end;
+		flex-grow: 1;
+		gap: 4rem;
+		position: relative;
+		z-index: 3;
+		margin: 1rem;
+		padding-bottom: 3%;
+	}
+
+	.screen {
+		width: calc(25%);
+		margin-bottom: 2rem;
+		display: flex;
+		aspect-ratio: 10 / 16;
+		overflow: hidden;
+		position: relative;
+		z-index: 10;
+		border-radius: 1rem;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+	}
+
+	.screen::before {
+		content: '';
 		position: absolute;
-		z-index: 1;
-		left: 0px;
-		top: 0px;
-		background-size: 300%;
-		background-position: 0% 0%;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
 		opacity: 0.6;
-		animation: pan-image 15s linear infinite;
+		animation: 15s linear 0s infinite alternate pan-image;
+	}
+
+	.screen:nth-child(1)::before {
+		background-image: url('https://images.unsplash.com/photo-1616285720779-9e597265df0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=659&q=80');
+	}
+
+	.screen:nth-child(2)::before {
+		background-image: url('https://images.unsplash.com/photo-1463043254199-7a3efd782ad1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80');
+	}
+
+	.screen:nth-child(3)::before {
+		background-image: url('https://images.unsplash.com/photo-1582794543462-0d7922e50cf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2127&q=80');
+	}
+
+	.content a {
+		text-align: center;
+	}
+
+	.screen-user {
+		position: absolute;
+		display: flex;
+		top: 25%;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+
+	.screen-user a {
+		color: white;
+		text-decoration: none;
+		font-size: 2rem;
 	}
 
 	@media only screen and (min-width: 768px) {
@@ -121,29 +200,26 @@
 		section {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-between;
+			align-items: center;
+			justify-content: center;
+			height: 95vh;
 			padding: 0 2rem;
-		}
-
-		.screen {
-			width: calc(33.33% - 2rem);
-			margin-bottom: 2rem;
 		}
 	}
 
 	@media screen and (max-width: 767px) {
 		section {
 			flex-direction: column;
-			justify-content: center;
+			align-items: center;
 		}
 
 		* {
 			box-sizing: border-box;
+			padding-top: 25%;
 		}
 
 		.screen {
-			width: 100%;
-			padding-top: 2%;
+			width: 75%;
 		}
 	}
 </style>
