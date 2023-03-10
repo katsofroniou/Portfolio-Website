@@ -173,7 +173,7 @@
 	}
 
 	.screen:nth-child(3)::before {
-		background-image: url('https://images.unsplash.com/photo-1582794543462-0d7922e50cf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2127&q=80');
+		background-image: url('https://images.unsplash.com/photo-1587421976536-c2de1cac8bb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
 	}
 
 	.content a {
