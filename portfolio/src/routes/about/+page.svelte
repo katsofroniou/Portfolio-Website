@@ -1,26 +1,40 @@
+<script lang='ts'>
+	const dob = new Date(2002, 08, 23);
+	const now = new Date(Date.now())
+
+	function age(dob: Date, now: Date) {
+		const yearsDiff = now.getFullYear() - dob.getFullYear();
+		const monthsDiff = now.getMonth() - dob.getMonth();
+		const daysDiff = now.getDate() - dob.getDate();
+
+		let age = yearsDiff;
+
+		if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff < 0)) {
+			age--;
+		} 
+
+		return age;
+	}
+
+	const myAge:number = age(dob, now);
+</script>
+
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About this app" />
+	<title>About Me</title>
+	<meta name="About Me" content="About" />
+	<style type="text/css">
+		body {
+			background-color: rgb(255, 227, 241);
+		}
+	</style>
 </svelte:head>
 
-<div class="text-column">
-	<h1>About this app</h1>
+<main>
+	<h1>About Me</h1>
 
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
+	<p class="name">Katerina Sofroniou</p>
+	<p class="dob">{myAge}</p>
+</main>
 
-	<pre>npm create svelte@latest</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p>
-</div>
+<style>
+</style>
