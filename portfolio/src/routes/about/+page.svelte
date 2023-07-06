@@ -159,7 +159,41 @@
 	$white: #fff;
 	$background: #f0ecfc;
 
-	.buttonContainer {
+    .skillsContent {
+		display: table;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+		width: 50%;
+		height: 50%;
+		background-color: $background;
+
+        p {
+            font-weight: bold;
+            margin: 3%;
+        }
+
+		ul {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+			padding: 0;
+
+			li {
+				list-style-type: none;
+                display: inline;
+                float: none;
+				background-color: $white;
+				fill-opacity: 0.2;
+				border-radius: 1rem;
+				padding: 1% 3%;
+				margin: 2%;
+			}
+		}
+	}
+
+    
+    .buttonContainer {
 		display: flex;
 		justify-content: center;
 		gap: 10px;
