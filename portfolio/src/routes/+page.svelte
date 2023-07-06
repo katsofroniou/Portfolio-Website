@@ -7,7 +7,6 @@
 	<style type="text/css">
 		body {
 			--primary-rgb: rgb(255, 118, 164);
-			--border-test: black;
 			background-color: rgb(255, 227, 241);
 		}
 	</style>
@@ -190,7 +189,7 @@
 	}
 
 	.screen-user a {
-		color: white;
+		color: rgb(184, 12, 118);
 		text-decoration: none;
 		font-size: 2rem;
 	}
