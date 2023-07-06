@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	const dob = new Date(2002, 8, 23);
 	const now = new Date(Date.now());
 
@@ -17,6 +19,43 @@
 	}
 
 	const myAge: number = age(dob, now);
+
+	let showSkills = false;
+	let showHobbies = false;
+	let showEdu = false;
+	let showAbout = false;
+
+	onMount(() => {
+		showSkills = true;
+	});
+
+	function toggleSkills() {
+		showSkills = true;
+		showHobbies = false;
+		showEdu = false;
+		showAbout = false;
+	}
+
+	function toggleHobbies() {
+		showSkills = false;
+		showHobbies = true;
+		showEdu = false;
+		showAbout = false;
+	}
+
+	function toggleEdu() {
+		showSkills = false;
+		showHobbies = false;
+		showAbout = false;
+		showEdu = true;
+	}
+
+	function toggleAbout() {
+		showSkills = false;
+		showHobbies = false;
+		showEdu = false;
+		showAbout = true;
+	}
 </script>
 
 <svelte:head>
@@ -33,95 +72,199 @@
 </svelte:head>
 
 <main>
-	<div class="name-age">
-		<p class="name">Katerina Sofroniou, {myAge}</p>
+	<div class="buttonContainer">
+		<button on:click={toggleEdu} class="allbtn sectionbtn"
+			><span>Education + Volunteering</span></button
+		>
+		<button on:click={toggleSkills} class="allbtn sectionbtn"><span>Skills</span></button>
+		<button on:click={toggleHobbies} class="allbtn sectionbtn"><span>Hobbies</span></button>
+		<button on:click={toggleAbout} class="allbtn sectionbtn"><span>About</span></button>
 	</div>
-	<div class="section-container">
-		<div class="section">
-			<div class="content">
-				<h3>Education and Volunteering</h3>
-				<div class="subsection">
-					<h5 class="subtitle">Education</h5>
-					<ul>
-						<li>Royal Holloway 2021-2024</li>
-						<li>Computer Science BSc</li>
-					</ul>
-				</div>
-				<div class="subsection">
-					<h5 class="subtitle">Volunteering</h5>
-					<p>University</p>
-					<ul>
-						<li>Anime and Manga Society - Diversity and Inclusivity Rep 2023-2023</li>
-						<li>Anime and Manga Society - Treasurer 2023-2024</li>
-						<li>Peer Mentor</li>
-					</ul>
-					<p>Secondary School</p>
-					<ul>
-						<li>Digital Leader</li>
-						<li>Robotics Club Volunteer</li>
-						<li>Prefect</li>
-					</ul>
-				</div>
-				<div class="subsection">
-					<h5 class="subtitle">Other Achievements</h5>
-					<ul>
-						<li>Grade 3 Piano - 2016</li>
-						<li>Level 3 Algebra Award - 2017</li>
-						<li>Brilliant Club 1st in Neuroscience - 2018</li>
-						<li>Brilliant Club 1st in Bayesian Statistics - 2019</li>
-					</ul>
-				</div>
-			</div>
 
-			<div class="section">
-				<div class="content">
-					<h3>Skills</h3>
-					<div class="subsection">
-						<h5 class="subtitle">Languages</h5>
-						<ul class="skills-container">
-							<li class="skill-item">Python</li>
-							<li class="skill-item">Java</li>
-							<li class="skill-item">SQL</li>
-							<li class="skill-item">HTML - CSS</li>
-							<li class="skill-item">JavaScript - TypeScript</li>
-							<li class="skill-item">Prolog</li>
-						</ul>
-					</div>
-					<div class="subsection">
-						<h5 class="subtitle">Technology</h5>
-						<ul class="skills-container">
-							<li class="skill-item">Web Frameworks - React, Svelte, Vite</li>
-							<li class="skill-item">Django</li>
-							<li class="skill-item">Git</li>
-							<li class="skill-item">PostgreSQL</li>
-						</ul>
-					</div>
-					<div class="subsection">
-						<h5 class="subtitle">Other Skills</h5>
-						<ul class="skills-container">
-							<li class="skill-item">Linux</li>
-							<li class="skill-item">Linear Algebra - Multi Dimensional Data Processing</li>
-							<li class="skill-item">Algorithms & Complexity</li>
-							<li class="skill-item">Data Analysis</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+	{#if showSkills}
+		<div class="skillsContent">
+			<p>Languages</p>
+			<ul class="skillsContainer">
+				<li>Python</li>
+				<li>Java</li>
+				<li>SQL</li>
+				<li>HTML</li>
+				<li>CSS - SCSS</li>
+				<li>Prolog</li>
+				<li>JavaScript - TypeScript</li>
+			</ul>
 
-			<div class="section">
-				<div class="content">
-					<h3>Hobbies</h3>
-					<ul class="hobbies-container">
-						<li class="hobby-item">Gaming</li>
-						<li class="hobby-item">Painting and Drawing</li>
-						<li class="hobby-item">Playing Piano</li>
-					</ul>
-				</div>
-			</div>
+			<p>Technology</p>
+			<ul class="skillsContainer">
+				<li>Web Frameworks - React, Svelte, Vite</li>
+				<li>Django</li>
+				<li>Git</li>
+				<li>PostgreSQL</li>
+			</ul>
+
+			<p>Other Skills</p>
+			<ul class="skillsContainer">
+				<li>Linux</li>
+				<li>Linear Algebra - Multi Dimensional Data Processing</li>
+				<li>Algorithms & Complexity</li>
+				<li>Data Analysis</li>
+			</ul>
 		</div>
-	</div>
+	{/if}
+
+	{#if showHobbies}
+		<div class="hobbiesContent">
+			<ul>
+				<li>Baking</li>
+				<li>Playing Piano</li>
+				<li>Drawing and Painting</li>
+				<li>Sewing and Cross-stitch</li>
+			</ul>
+		</div>
+	{/if}
+
+	{#if showEdu}
+		<div class="educationContent">
+			<p>University</p>
+			<ul>
+				<li>Student Society - Treasurer 2023-2024</li>
+				<li>Peer Mentor</li>
+			</ul>
+			<p>Secondary School</p>
+			<ul>
+				<li>Digital Leader</li>
+				<li>Robotics Club Volunteer</li>
+				<li>Prefect</li>
+			</ul>
+
+			<p>Other Achievements</p>
+			<ul>
+				<li>Grade 5 Piano - 2016</li>
+				<li>Level 3 Algebra Award - 2017</li>
+				<li>Brilliant Club 1st in Neuroscience - 2018</li>
+				<li>Brilliant Club 1st in Bayesian Statistics - 2019</li>
+			</ul>
+		</div>
+	{/if}
+
+	{#if showAbout}
+		<div class="aboutContent">
+			<p>about me - {myAge}</p>
+		</div>
+	{/if}
 </main>
 
-<style>
+<style lang="scss">
+	$pink: #f48fb1;
+	$white: #fff;
+	$background: #f0ecfc;
 
+	.buttonContainer {
+		display: flex;
+		justify-content: center;
+		gap: 10px;
+		margin-bottom: 20px;
+	}
+
+	.allbtn {
+		width: auto;
+		height: 40px;
+		color: $white;
+		border-radius: 5px;
+		padding: 10px 30px;
+		font-family: 'Lato', sans-serif;
+		font-weight: 500;
+		background: transparent;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		position: relative;
+		display: inline-block;
+		box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+			4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+		outline: none;
+		min-width: 10rem;
+	}
+
+	.sectionbtn {
+		background-color: $background;
+		background-image: linear-gradient(315deg, #f8bbd0 0%, $pink 74%);
+		line-height: 42px;
+		padding: 0;
+		border: none;
+
+		span {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: '';
+			right: 0;
+			bottom: 0;
+			background: $pink;
+			transition: all 0.3s ease;
+		}
+
+		&:before {
+			height: 0%;
+			width: 2px;
+		}
+
+		&:after {
+			width: 0%;
+			height: 2px;
+		}
+
+		&:hover:before {
+			height: 100%;
+		}
+
+		&:hover:after {
+			width: 100%;
+		}
+
+		&:hover {
+			background: transparent;
+		}
+
+		span:hover {
+			color: $pink;
+		}
+
+		span:before,
+		span:after {
+			position: absolute;
+			content: '';
+			left: 0;
+			top: 0;
+			background: $pink;
+			transition: all 0.3s ease;
+		}
+
+		span:before {
+			width: 2px;
+			height: 0%;
+		}
+
+		span:after {
+			height: 2px;
+			width: 0%;
+		}
+
+		span:hover:before {
+			height: 100%;
+		}
+
+		span:hover:after {
+			width: 100%;
+		}
+
+		&:active {
+			transform: translateY(2px);
+		}
+	}
 </style>
