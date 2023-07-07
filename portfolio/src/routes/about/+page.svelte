@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	const dob = new Date(2002, 8, 23);
@@ -56,6 +57,10 @@
 		showEdu = false;
 		showAbout = true;
 	}
+
+	function goHome() {
+		goto('/');
+	}
 </script>
 
 <svelte:head>
@@ -79,10 +84,11 @@
 		<button on:click={toggleSkills} class="allbtn sectionbtn"><span>Skills</span></button>
 		<button on:click={toggleHobbies} class="allbtn sectionbtn"><span>Hobbies</span></button>
 		<button on:click={toggleAbout} class="allbtn sectionbtn"><span>About</span></button>
+		<button on:click={goHome} class="allbtn homebtn sectionbtn"><span>Home</span></button>
 	</div>
 
 	{#if showSkills}
-		<div class="skillsContent">
+		<div class="skillsContent slide-up-fade-in">
 			<p>Languages</p>
 			<ul class="skillsContainer">
 				<li>Python</li>
@@ -105,15 +111,15 @@
 			<p>Other Skills</p>
 			<ul class="skillsContainer">
 				<li>Linux</li>
-				<li>Linear Algebra - Multi Dimensional Data Processing</li>
 				<li>Algorithms & Complexity</li>
 				<li>Data Analysis</li>
+				<li>Linear Algebra - Multi Dimensional Data Processing</li>
 			</ul>
 		</div>
 	{/if}
 
 	{#if showHobbies}
-		<div class="hobbiesContent">
+		<div class="hobbiesContent slide-up-fade-in">
 			<ul>
 				<li>Baking</li>
 				<li>Playing Piano</li>
@@ -124,16 +130,16 @@
 	{/if}
 
 	{#if showEdu}
-		<div class="educationContent">
+		<div class="educationContent slide-up-fade-in">
 			<p>University</p>
 			<ul>
 				<li>Student Society - Treasurer 2023-2024</li>
 				<li>Peer Mentor</li>
 			</ul>
-			<p>Secondary School</p>
+			<p>Sixth Form</p>
 			<ul>
 				<li>Digital Leader</li>
-				<li>Robotics Club Volunteer</li>
+				<li>Robotics Club Leader</li>
 				<li>Prefect</li>
 			</ul>
 
@@ -148,42 +154,64 @@
 	{/if}
 
 	{#if showAbout}
-		<div class="aboutContent">
+		<div class="aboutContent slide-up-fade-in">
 			<p>about me - {myAge}</p>
 		</div>
 	{/if}
 </main>
 
 <style lang="scss">
-	$pink: #f48fb1;
-	$white: #fff;
-	$background: #f0ecfc;
+	$pink: rgba(244, 143, 177, 1);
 
-    .skillsContent {
+	::selection {
+		background-color: #ffb1ce;
+	}
+
+	.slide-up-fade-in {
+		animation: slide-up-fade-in ease 1s;
+		transform-origin: 50% 50%;
+		animation-fill-mode: forwards;
+
+		@keyframes slide-up-fade-in {
+			0% {
+				opacity: 0;
+				transform: translate(0px, 40px);
+			}
+			100% {
+				opacity: 1;
+				transform: translate(0px, 0px);
+			}
+		}
+	}
+
+	.skillsContent,
+	.educationContent {
 		display: table;
 		flex-direction: column;
 		align-items: center;
 		margin: auto;
+		border-radius: 2rem;
 		width: 50%;
 		height: 50%;
-		background-color: $background;
+		background-color: rgba(255, 90, 151, 0.1);
+		max-width: 65%;
 
-        p {
-            font-weight: bold;
-            margin: 3%;
-        }
+		p {
+			font-weight: bold;
+			margin: 3%;
+		}
 
 		ul {
-            display: flex;
-            flex-wrap: wrap;
-            align-content: center;
+			display: flex;
+			flex-wrap: wrap;
+			align-content: center;
 			padding: 0;
 
 			li {
 				list-style-type: none;
-                display: inline;
-                float: none;
-				background-color: $white;
+				display: inline;
+				float: none;
+				background-color: rgba(255, 255, 255, 0.5);
 				fill-opacity: 0.2;
 				border-radius: 1rem;
 				padding: 1% 3%;
@@ -192,18 +220,17 @@
 		}
 	}
 
-    
-    .buttonContainer {
+	.buttonContainer {
 		display: flex;
 		justify-content: center;
 		gap: 10px;
-		margin-bottom: 20px;
+		margin: 30px 0;
 	}
 
 	.allbtn {
 		width: auto;
 		height: 40px;
-		color: $white;
+		color: #fff;
 		border-radius: 5px;
 		padding: 10px 30px;
 		font-family: 'Lato', sans-serif;
@@ -220,7 +247,7 @@
 	}
 
 	.sectionbtn {
-		background-color: $background;
+		background-color: #fff;
 		background-image: linear-gradient(315deg, #f8bbd0 0%, $pink 74%);
 		line-height: 42px;
 		padding: 0;
