@@ -27,7 +27,7 @@
 	let showAbout = false;
 
 	onMount(() => {
-		showSkills = true;
+		showAbout = true;
 	});
 
 	function toggleSkills() {
@@ -68,7 +68,7 @@
 	<meta name="About Me" content="About" />
 	<style type="text/css">
 		body {
-			font-family: Arial, sans-serif;
+			font-family: 'Lato', sans-serif;
 			background-color: #ffe3f1;
 			margin: 0;
 			padding: 20px;
@@ -78,18 +78,18 @@
 
 <main>
 	<div class="buttonContainer">
+		<button on:click={toggleAbout} class="allbtn sectionbtn"><span>About</span></button>
+		<button on:click={toggleSkills} class="allbtn sectionbtn"><span>Skills</span></button>
 		<button on:click={toggleEdu} class="allbtn sectionbtn"
 			><span>Education + Volunteering</span></button
 		>
-		<button on:click={toggleSkills} class="allbtn sectionbtn"><span>Skills</span></button>
 		<button on:click={toggleHobbies} class="allbtn sectionbtn"><span>Hobbies</span></button>
-		<button on:click={toggleAbout} class="allbtn sectionbtn"><span>About</span></button>
-		<button on:click={goHome} class="allbtn homebtn sectionbtn"><span>Home</span></button>
+		<button on:click={goHome} class="allbtn homebtn"><span>Home</span></button>
 	</div>
 
 	{#if showSkills}
 		<div class="skillsContent slide-up-fade-in">
-			<p>Languages</p>
+			<p class="title">Languages</p>
 			<ul class="skillsContainer">
 				<li>Python</li>
 				<li>Java</li>
@@ -100,7 +100,7 @@
 				<li>JavaScript - TypeScript</li>
 			</ul>
 
-			<p>Technology</p>
+			<p class="title">Technology</p>
 			<ul class="skillsContainer">
 				<li>Web Frameworks - React, Svelte, Vite</li>
 				<li>Django</li>
@@ -108,7 +108,7 @@
 				<li>PostgreSQL</li>
 			</ul>
 
-			<p>Other Skills</p>
+			<p class="title">Other Skills</p>
 			<ul class="skillsContainer">
 				<li>Linux</li>
 				<li>Algorithms & Complexity</li>
@@ -125,25 +125,27 @@
 				<li>Playing Piano</li>
 				<li>Drawing and Painting</li>
 				<li>Sewing and Cross-stitch</li>
+				<li>Gaming</li>
+				<li>Video Game Modding</li>
 			</ul>
 		</div>
 	{/if}
 
 	{#if showEdu}
 		<div class="educationContent slide-up-fade-in">
-			<p>University</p>
+			<p class="title">University</p>
 			<ul>
 				<li>Student Society - Treasurer 2023-2024</li>
 				<li>Peer Mentor</li>
 			</ul>
-			<p>Sixth Form</p>
+			<p class="title">Sixth Form</p>
 			<ul>
 				<li>Digital Leader</li>
 				<li>Robotics Club Leader</li>
 				<li>Prefect</li>
 			</ul>
 
-			<p>Other Achievements</p>
+			<p class="title">Other Achievements</p>
 			<ul>
 				<li>Grade 5 Piano - 2016</li>
 				<li>Level 3 Algebra Award - 2017</li>
@@ -155,13 +157,29 @@
 
 	{#if showAbout}
 		<div class="aboutContent slide-up-fade-in">
-			<p>about me - {myAge}</p>
+			<p><span>Hi! I'm Katerina and I'm {myAge} years old</span></p>
+			<p><span>Currently a 3rd year Computer Science BSc Student at Royal Holloway</span></p>
+			<p>
+				<span>
+					I discovered my passion for computers when I was 11 years old and have been teaching
+					myself how to code ever since
+				</span>
+			</p>
+			<p>
+				<span>
+					I also have a strong affinity for numbers and data, so have recently delved into more data
+					based projects
+				</span>
+			</p>
 		</div>
 	{/if}
 </main>
 
 <style lang="scss">
-	$pink: rgba(244, 143, 177, 1);
+	@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Calligraffitti&display=swap');
+
+	$pink: #f48fb1;
+	$purple: #d19ef1;
 
 	::selection {
 		background-color: #ffb1ce;
@@ -184,8 +202,8 @@
 		}
 	}
 
-	.skillsContent,
-	.educationContent {
+	@mixin cardStyle {
+		box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 12px 9px rgba(0, 0, 0, 0.22);
 		display: table;
 		flex-direction: column;
 		align-items: center;
@@ -195,12 +213,9 @@
 		height: 50%;
 		background-color: rgba(255, 90, 151, 0.1);
 		max-width: 65%;
+	}
 
-		p {
-			font-weight: bold;
-			margin: 3%;
-		}
-
+	@mixin listStyle {
 		ul {
 			display: flex;
 			flex-wrap: wrap;
@@ -217,6 +232,22 @@
 				padding: 1% 3%;
 				margin: 2%;
 			}
+		}
+	}
+
+	.hobbiesContent {
+		@include cardStyle;
+		@include listStyle;
+	}
+
+	.skillsContent,
+	.educationContent {
+		@include cardStyle;
+		@include listStyle;
+
+		p {
+			font-weight: bold;
+			margin: 3%;
 		}
 	}
 
@@ -246,9 +277,7 @@
 		min-width: 10rem;
 	}
 
-	.sectionbtn {
-		background-color: #fff;
-		background-image: linear-gradient(315deg, #f8bbd0 0%, $pink 74%);
+	@mixin buttonNoColour {
 		line-height: 42px;
 		padding: 0;
 		border: none;
@@ -266,7 +295,6 @@
 			content: '';
 			right: 0;
 			bottom: 0;
-			background: $pink;
 			transition: all 0.3s ease;
 		}
 
@@ -292,17 +320,12 @@
 			background: transparent;
 		}
 
-		span:hover {
-			color: $pink;
-		}
-
 		span:before,
 		span:after {
 			position: absolute;
 			content: '';
 			left: 0;
 			top: 0;
-			background: $pink;
 			transition: all 0.3s ease;
 		}
 
@@ -326,6 +349,70 @@
 
 		&:active {
 			transform: translateY(2px);
+		}
+	}
+
+	.sectionbtn {
+		@include buttonNoColour;
+		background-image: linear-gradient(315deg, #f8bbd0 0%, $pink 74%);
+
+		&:before,
+		&:after {
+			background: $pink;
+		}
+
+		span:hover {
+			color: $pink;
+		}
+
+		span:before,
+		span:after {
+			background: $pink;
+		}
+	}
+
+	.homebtn {
+		@include buttonNoColour;
+		background-image: linear-gradient(315deg, rgb(235, 204, 255) 0%, rgb(209, 158, 241) 74%);
+
+		&:before,
+		&:after {
+			background: $purple;
+		}
+
+		span:hover {
+			color: $purple;
+		}
+
+		span:before,
+		span:after {
+			background: $purple;
+		}
+	}
+
+	.title {
+		font-family: 'Calligraffitti', cursive;
+		font-weight: 700;
+		font-size: 1.5rem;
+		transform: translate(-1%, -1%);
+		letter-spacing: 0.02em;
+		color: #ef5097;
+		text-shadow: 2px 2px 2px #00000048;
+	}
+
+	.aboutContent {
+		@include cardStyle;
+
+		p {
+			text-align: center;
+			font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+			padding: 2%;
+
+			span {
+				padding: 1%;
+				background-color: rgba(255, 255, 255, 0.5);
+				border-radius: 10px;
+			}
 		}
 	}
 </style>
