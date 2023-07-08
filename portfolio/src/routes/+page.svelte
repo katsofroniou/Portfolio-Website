@@ -33,9 +33,7 @@
 					<span class="content" data-value="CONTACTS">
 						<div class="social">
 							<a href="https://github.com/katsofroniou/">GITHUB</a>
-							<a href="https://www.linkedin.com/in/katerina-sofroniou-319aba244/">LINKEDIN</a>
-							<a href="/contact">CONTACT ME</a>
-						</div>
+							<a href="https://www.linkedin.com/in/katerina-sofroniou-319aba244/">LINKEDIN</a>						</div>
 					</span>
 				</div>
 			</div>
