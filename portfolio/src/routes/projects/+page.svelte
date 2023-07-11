@@ -18,7 +18,6 @@
 			height: 100vh;
 			justify-content: center;
 			margin: 0px;
-			overflow: hidden;
 			padding: 0px;
 		}
 	</style>
@@ -33,91 +32,91 @@
 	</div>
 	<div id="projectsContainer">
 		<div class="project">
-			<a href="https://github.com/katsofroniou/london-fire" target="_blank">
-			<div class="content">
-				<div class="infoContainer">
-					<div class="info">
-						<div class="title">
-							<h3>London Fire Department Data Analysis</h3>
-							<p>
-								My first web scraping and data project! I was really excited to start this and hope
-								to do more with it in the future
-							</p>
+			<a href="https://github.com/katsofroniou/Portfolio-Website" target="_blank">
+				<div class="content">
+					<div class="infoContainer">
+						<div class="info">
+							<div class="title">
+								<h3>Portfolio Website</h3>
+								<p>
+									This source code for this website! It was created using Svelte, Vite, TypeScript
+									and SCSS. It was the first time I used each of these languages/technologies, so it
+									was a bit of a challenge but worked out well :D
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</a>
+			</a>
+		</div>
+		<div class="project">
+			<a href="https://github.com/katsofroniou/london-fire" target="_blank">
+				<div class="content">
+					<div class="infoContainer">
+						<div class="info">
+							<div class="title">
+								<h3>London Fire Department Data Analysis</h3>
+								<p>
+									My first web scraping and data project! I was really excited to start this and
+									hope to do more with it in the future
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
 		</div>
 		<div class="project">
 			<a href="https://github.com/katsofroniou/RHUL-Robotic-Rubiks-Cube-Solver" target="_blank">
-			<div class="content">
-				<div class="infoContainer">
-					<div class="info">
-						<div class="title">
-							<h3>RHUL Robotic Rubiks Cube Solver</h3>
-							<p>
-								Created for my first year group project at university. It is a small lego Ev3 robot
-								that can solve a Rubik's cube by scanning each side and calculating the correct
-								moved
-							</p>
+				<div class="content">
+					<div class="infoContainer">
+						<div class="info">
+							<div class="title">
+								<h3>RHUL Robotic Rubiks Cube Solver</h3>
+								<p>
+									Created for my first year group project at university. It is a small lego Ev3
+									robot that can solve a Rubik's cube by scanning each side and calculating the
+									correct moved
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</a>
+			</a>
 		</div>
 		<div class="project">
 			<a href="https://github.com/katsofroniou/CityUOL-Java-Bootcamp" target="_blank">
-			<div class="content">
-				<div class="infoContainer">
-					<div class="info">
-						<div class="title">
-							<h3>City UOL Java Bootcamp MP3 Player</h3>
-							<p>
-								After learning Java for 2 weeks through Processing, I created a small MP3 music
-								player with visual representation of the music currently playing
-							</p>
+				<div class="content">
+					<div class="infoContainer">
+						<div class="info">
+							<div class="title">
+								<h3>City UOL Java Bootcamp MP3 Player</h3>
+								<p>
+									After learning Java for 2 weeks through Processing, I created a small MP3 music
+									player with visual representation of the music currently playing
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</a>
 		</div>
 		<div class="project">
 			<a href="https://github.com/katsofroniou/CityUOL-Discord-bot" target="_blank">
-			<div class="content">
-				<div class="infoContainer">
-					<div class="info">
-						<div class="title">
-							<h3>City UOL Discord Bot</h3>
-							<p>
-								A small helper bot for the City UOL server for students. It was created to allow
-								easy access to regularly needed information such as class schedules, coursework due
-								dates and Zoom room codes and passwords
-							</p>
+				<div class="content">
+					<div class="infoContainer">
+						<div class="info">
+							<div class="title">
+								<h3>City UOL Discord Bot</h3>
+								<p>
+									A small helper bot for the City UOL server for students. It was created to allow
+									easy access to regularly needed information such as class schedules, coursework
+									due dates and Zoom room codes and passwords
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			</a>
-		</div>
-		<div class="project">
-			<a href="https://github.com/katsofroniou/Portfolio-Website" target="_blank">
-			<div class="content">
-				<div class="infoContainer">
-					<div class="info">
-						<div class="title">
-							<h3>Portfolio Website</h3>
-							<p>
-								This source code for this website! It was created using Svelte, Vite, TypeScript and
-								SCSS. It was the first time I used each of these languages/technologies, so it was a
-								bit of a challenge but worked out well :D
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 			</a>
 		</div>
 		<div class="project">
@@ -146,6 +145,11 @@
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
+
+		@media (max-width: 1000px) {
+			justify-content: flex-start;
+			margin-top: 25%;
+		}
 	}
 
 	a {
@@ -166,6 +170,11 @@
 				0.015em 0.015em mix(#fff, #e91e63, 64%), 0.02em 0.02em 0 mix(#fff, #e91e63, 66%),
 				0.025em 0.025em 0 mix(#fff, #e91e63, 68%), 0.03em 0.03em 0 mix(#fff, #e91e63, 70%),
 				0.035em 0.035em 0 mix(#fff, #e91e63, 72%);
+
+			@media (max-width: 1000px) {
+				font-size: 13vw;
+				margin: 0;
+			}
 		}
 	}
 	#projectsContainer {
@@ -176,6 +185,11 @@
 		gap: 10px;
 		max-width: 1000px;
 		width: calc(100% - 20px);
+
+		@media (max-width: 1000px) {
+			flex-direction: column;
+			align-items: center;
+		}
 	}
 
 	.project {
@@ -187,6 +201,11 @@
 		box-shadow: 0 10px 19px rgba(0, 0, 0, 0.3), 0 6px 4.5px rgba(0, 0, 0, 0.22);
 		overflow: hidden;
 		transition: transform 0.25s ease-out;
+
+		@media (max-width: 1000px) {
+			flex: auto;
+			width: 80%;
+		}
 
 		&:hover {
 			transform: translateY(2px);
