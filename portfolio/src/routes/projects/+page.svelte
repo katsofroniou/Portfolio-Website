@@ -1,30 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
-	onMount(() => {
-		const handleMouseMove = (e: MouseEvent) => {
-			const projects = document.getElementsByClassName('project') as HTMLCollectionOf<HTMLElement>;
-			for (const project of projects) {
-				const rect = project.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
-
-				project.style.setProperty('--mouse-x', `${x}px`);
-				project.style.setProperty('--mouse-y', `${y}px`);
-			}
-		};
-
-		const projectsContainer = document.getElementById('projectsContainer');
-		if (projectsContainer) {
-			projectsContainer.addEventListener('mousemove', handleMouseMove);
-		}
-
-		return () => {
-			if (projectsContainer) {
-				projectsContainer.removeEventListener('mousemove', handleMouseMove);
-			}
-		};
-	});
+	function goHome() {
+		goto('/');
+	}
 </script>
 
 <svelte:head>
@@ -32,23 +11,37 @@
 	<meta name="Kat's Projects" content="A collection of all projects" />
 	<style type="text/css">
 		body {
+			font-family: 'Lato', sans-serif;
 			background-color: #ffe3f1;
+			align-items: center;
 			display: flex;
+			height: 100vh;
 			justify-content: center;
+			margin: 0px;
 			overflow: hidden;
+			padding: 0px;
 		}
 	</style>
 </svelte:head>
 
 <main>
+	<div class="titleContainer">
+		<h1 class="title">My Projects</h1>
+	</div>
+	<div class="buttonContainer">
+		<button on:click={goHome} class="allbtn homebtn"><span>Home</span></button>
+	</div>
 	<div id="projectsContainer">
 		<div class="project">
 			<div class="content">
 				<div class="infoContainer">
 					<div class="info">
 						<div class="title">
-							<h3>Project 1</h3>
-							<p>info about project</p>
+							<h3>London Fire Department Data Analysis</h3>
+							<p>
+								My first web scraping and data project! I was really excited to start this and hope
+								to do more with it in the future
+							</p>
 						</div>
 					</div>
 				</div>
@@ -59,8 +52,12 @@
 				<div class="infoContainer">
 					<div class="info">
 						<div class="title">
-							<h3>Project 2</h3>
-							<p>info about project</p>
+							<h3>RHUL Robotic Rubiks Cube Solver</h3>
+							<p>
+								Created for my first year group project at university. It is a small lego Ev3 robot
+								that can solve a Rubik's cube by scanning each side and calculating the correct
+								moved
+							</p>
 						</div>
 					</div>
 				</div>
@@ -71,8 +68,11 @@
 				<div class="infoContainer">
 					<div class="info">
 						<div class="title">
-							<h3>Project 3</h3>
-							<p>info about project</p>
+							<h3>City UOL Java Bootcamp MP3 Player</h3>
+							<p>
+								After learning Java for 2 weeks through Processing, I created a small MP3 music
+								player with visual representation of the music currently playing
+							</p>
 						</div>
 					</div>
 				</div>
@@ -83,8 +83,12 @@
 				<div class="infoContainer">
 					<div class="info">
 						<div class="title">
-							<h3>Project 4</h3>
-							<p>info about project</p>
+							<h3>City UOL Discord Bot</h3>
+							<p>
+								A small helper bot for the City UOL server for students. It was created to allow
+								easy access to regularly needed information such as class schedules, coursework due
+								dates and Zoom room codes and passwords
+							</p>
 						</div>
 					</div>
 				</div>
@@ -95,8 +99,12 @@
 				<div class="infoContainer">
 					<div class="info">
 						<div class="title">
-							<h3>Project 5</h3>
-							<p>info about project</p>
+							<h3>Portfolio Website</h3>
+							<p>
+								This source code for this website! It was created using Svelte, Vite, TypeScript and
+								SCSS. It was the first time I used each of these languages/technologies, so it was a
+								bit of a challenge but worked out well :D
+							</p>
 						</div>
 					</div>
 				</div>
@@ -107,8 +115,11 @@
 				<div class="infoContainer">
 					<div class="info">
 						<div class="title">
-							<h3>Project 6</h3>
-							<p>info about project</p>
+							<h3>Future Projects</h3>
+							<p>
+								I have many more projects in development that I plan to complete over the summer of
+								2023; I'm looking forward to sharing them!
+							</p>
 						</div>
 					</div>
 				</div>
@@ -118,101 +129,213 @@
 </main>
 
 <style lang="scss">
-	$test: rgba(197, 138, 197, 0.8);
-	
+	$purple: #d19ef1;
 	main {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
 	}
 
+	.titleContainer {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+		h1 {
+			color: mix(#fff, #ff0055, 85%);
+			font-size: calc(1em + 7vh);
+			font-weight: 900;
+			text-shadow: -0.0075em 0.0075em 0 mix(#fff, #e91e63, 94%),
+				0.005em 0.005em 0 mix(#fff, #e91e63, 60%), 0.01em 0.01em 0 mix(#fff, #e91e63, 62%),
+				0.015em 0.015em mix(#fff, #e91e63, 64%), 0.02em 0.02em 0 mix(#fff, #e91e63, 66%),
+				0.025em 0.025em 0 mix(#fff, #e91e63, 68%), 0.03em 0.03em 0 mix(#fff, #e91e63, 70%),
+				0.035em 0.035em 0 mix(#fff, #e91e63, 72%);
+		}
+	}
 	#projectsContainer {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
+		position: relative;
 		gap: 10px;
 		max-width: 1000px;
-		justify-content: center;
-
-		&:hover > .project::after {
-			opacity: 1;
-		}
+		width: calc(100% - 20px);
 	}
 
 	.project {
-		background-color: rgba(255, 136, 255, 0.534);
-		border-radius: 10px;
-		cursor: pointer;
-		display: flex;
-		flex-direction: row;
-		height: 260px;
-		position: relative;
-		width: 300px;
+		flex: 0 0 calc(33.33% - 20px);
+		height: 200px;
+		background-color: #f5f5f5;
+		margin-bottom: 20px;
+		border-radius: 15px;
+		box-shadow: 0 10px 19px rgba(0, 0, 0, 0.3), 0 6px 4.5px rgba(0, 0, 0, 0.22);
+		overflow: hidden;
+		transition: transform 0.25s ease-out; /* Add initial transition to ease-out */
 
-		&:hover::before {
-			opacity: 1;
-		}
-
-		&::before,
-		&::after {
-			content: '';
-			border-radius: inherit;
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			top: 0px;
-			left: 0px;
-			opacity: 0;
-			transition: opacity 500ms;
-		}
-
-		&::before {
-			background: radial-gradient(
-				800px circle at var(--mouse-x) var(--mouse-y),
-				rgba(255, 255, 255, 0.4),
-				transparent 40%
-			);
-			z-index: 3;
+		&:hover {
+			transform: translateY(2px);
+			transition: transform 0.25s ease-in-out;
 		}
 
 		.content {
-			background-color: rgba(197, 104, 197, 0.534);
-			background-size: 400% 400%;
-			animation: gradientAnimation 10s ease infinite;
-			border-radius: inherit;
-			display: flex;
-			flex-direction: column;
-			flex-grow: 1;
-			inset: 1px;
-			padding: 10px;
-			position: absolute;
-			z-index: 2;
-		}
+			padding: 20px;
 
-		@keyframes gradientAnimation {
-			0% {
-				background-position: 0% 50%;
-			}
-			50% {
-				background-position: 100% 50%;
-			}
-			100% {
-				background-position: 0% 50%;
+			.infoContainer {
+				display: flex;
+				align-items: center;
+
+				.info {
+					flex: 1;
+
+					.title {
+						h3 {
+							font-size: 18px;
+							margin-bottom: 10px;
+							color: mix(#fff, #ff0055, 50%);
+						}
+
+						p {
+							font-size: 14px;
+							color: #888;
+						}
+					}
+				}
 			}
 		}
 	}
 
-	.infoContainer {
+	/* Separate for extra button styles later on */
+	@mixin cardStyle {
+		box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 12px 9px rgba(0, 0, 0, 0.22);
+		display: table;
+		flex-direction: column;
 		align-items: center;
+		margin: auto;
+		border-radius: 2rem;
+		width: 50%;
+		height: 50%;
+		background-color: rgba(255, 90, 151, 0.1);
+		max-width: 65%;
+	}
+	.buttonContainer {
 		display: flex;
-		flex-grow: 1;
-		justify-content: flex-start;
-		padding: 0, 20px;
+		justify-content: center;
+		gap: 10px;
+		margin: 30px 0;
 	}
 
-	.info {
-		align-items: flex-start;
-		display: flex;
-		gap: 10px;
+	.allbtn {
+		width: auto;
+		height: 40px;
+		color: #fff;
+		border-radius: 5px;
+		padding: 10px 30px;
+		font-family: 'Lato', sans-serif;
+		font-weight: 500;
+		background: transparent;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		position: relative;
+		display: inline-block;
+		box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+			4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+		outline: none;
+		min-width: 10rem;
+	}
+
+	@mixin buttonNoColour {
+		line-height: 42px;
+		padding: 0;
+		border: none;
+
+		span {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: '';
+			right: 0;
+			bottom: 0;
+			transition: all 0.3s ease;
+		}
+
+		&:before {
+			height: 0%;
+			width: 2px;
+		}
+
+		&:after {
+			width: 0%;
+			height: 2px;
+		}
+
+		&:hover:before {
+			height: 100%;
+		}
+
+		&:hover:after {
+			width: 100%;
+		}
+
+		&:hover {
+			background: transparent;
+		}
+
+		span:before,
+		span:after {
+			position: absolute;
+			content: '';
+			left: 0;
+			top: 0;
+			transition: all 0.3s ease;
+		}
+
+		span:before {
+			width: 2px;
+			height: 0%;
+		}
+
+		span:after {
+			height: 2px;
+			width: 0%;
+		}
+
+		span:hover:before {
+			height: 100%;
+		}
+
+		span:hover:after {
+			width: 100%;
+		}
+
+		&:active {
+			transform: translateY(2px);
+		}
+	}
+
+	.homebtn {
+		@include buttonNoColour;
+		background-image: linear-gradient(315deg, rgb(235, 204, 255) 0%, rgb(209, 158, 241) 74%);
+
+		&:before,
+		&:after {
+			background: $purple;
+		}
+
+		span:hover {
+			color: $purple;
+		}
+
+		span:before,
+		span:after {
+			background: $purple;
+		}
 	}
 </style>
