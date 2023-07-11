@@ -33,6 +33,7 @@
 	</div>
 	<div id="projectsContainer">
 		<div class="project">
+			<a href="https://github.com/katsofroniou/london-fire" target="_blank">
 			<div class="content">
 				<div class="infoContainer">
 					<div class="info">
@@ -46,8 +47,10 @@
 					</div>
 				</div>
 			</div>
+		</a>
 		</div>
 		<div class="project">
+			<a href="https://github.com/katsofroniou/RHUL-Robotic-Rubiks-Cube-Solver" target="_blank">
 			<div class="content">
 				<div class="infoContainer">
 					<div class="info">
@@ -62,8 +65,10 @@
 					</div>
 				</div>
 			</div>
+		</a>
 		</div>
 		<div class="project">
+			<a href="https://github.com/katsofroniou/CityUOL-Java-Bootcamp" target="_blank">
 			<div class="content">
 				<div class="infoContainer">
 					<div class="info">
@@ -77,8 +82,10 @@
 					</div>
 				</div>
 			</div>
+			</a>
 		</div>
 		<div class="project">
+			<a href="https://github.com/katsofroniou/CityUOL-Discord-bot" target="_blank">
 			<div class="content">
 				<div class="infoContainer">
 					<div class="info">
@@ -93,8 +100,10 @@
 					</div>
 				</div>
 			</div>
+			</a>
 		</div>
 		<div class="project">
+			<a href="https://github.com/katsofroniou/Portfolio-Website" target="_blank">
 			<div class="content">
 				<div class="infoContainer">
 					<div class="info">
@@ -109,6 +118,7 @@
 					</div>
 				</div>
 			</div>
+			</a>
 		</div>
 		<div class="project">
 			<div class="content">
@@ -136,6 +146,10 @@
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	.titleContainer {
@@ -172,7 +186,7 @@
 		border-radius: 15px;
 		box-shadow: 0 10px 19px rgba(0, 0, 0, 0.3), 0 6px 4.5px rgba(0, 0, 0, 0.22);
 		overflow: hidden;
-		transition: transform 0.25s ease-out; /* Add initial transition to ease-out */
+		transition: transform 0.25s ease-out;
 
 		&:hover {
 			transform: translateY(2px);
