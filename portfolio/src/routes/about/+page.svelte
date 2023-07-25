@@ -26,8 +26,27 @@
 	let showEdu = false;
 	let showAbout = false;
 
+	function handleWindowSizeChange() {
+		const screenWidth = window.innerWidth;
+
+		if (screenWidth <= 800) {
+			showSkills = true;
+			showHobbies = true;
+			showEdu = true;
+			showAbout = true;
+		} 
+		
+		else {
+			showSkills = false;
+			showHobbies = false;
+			showEdu = false;
+			showAbout = true;
+		}
+	}
+
 	onMount(() => {
-		showAbout = true;
+		handleWindowSizeChange();
+		window.addEventListener('resize', handleWindowSizeChange);
 	});
 
 	function toggleSkills() {
@@ -87,92 +106,94 @@
 		<button on:click={goHome} class="allbtn homebtn"><span>Home</span></button>
 	</div>
 
-	{#if showSkills}
-		<div class="skillsContent slide-up-fade-in">
-			<p class="title">Languages</p>
-			<ul class="skillsContainer">
-				<li>Python</li>
-				<li>Java</li>
-				<li>SQL</li>
-				<li>HTML</li>
-				<li>CSS - SCSS</li>
-				<li>Prolog</li>
-				<li>JavaScript - TypeScript</li>
-			</ul>
+	<div class="infoContainer slide-up-fade-in">
+		{#if showAbout}
+			<div class="aboutContent slide-up-fade-in">
+				<p><span>Hi! I'm Katerina and I'm {myAge} years old</span></p>
+				<p><span>Currently a 3rd year Computer Science BSc Student at Royal Holloway</span></p>
+				<p>
+					<span>
+						I discovered my passion for computers when I was 11 years old and have been teaching
+						myself how to code ever since
+					</span>
+				</p>
+				<p>
+					<span>
+						I also have a strong affinity for numbers and data, so have recently delved into more
+						data based projects
+					</span>
+				</p>
+			</div>
+		{/if}
 
-			<p class="title">Technology</p>
-			<ul class="skillsContainer">
-				<li>Web Frameworks - React, Svelte, Vite</li>
-				<li>Django</li>
-				<li>Git</li>
-				<li>PostgreSQL</li>
-			</ul>
+		{#if showSkills}
+			<div class="skillsContent slide-up-fade-in">
+				<p class="title">Languages</p>
+				<ul class="skillsContainer">
+					<li>Python</li>
+					<li>Java</li>
+					<li>SQL</li>
+					<li>HTML</li>
+					<li>CSS - SCSS</li>
+					<li>Prolog</li>
+					<li>JavaScript - TypeScript</li>
+				</ul>
 
-			<p class="title">Other Skills</p>
-			<ul class="skillsContainer">
-				<li>Linux</li>
-				<li>Algorithms & Complexity</li>
-				<li>Data Analysis</li>
-				<li>Linear Algebra - Multi Dimensional Data Processing</li>
-			</ul>
-		</div>
-	{/if}
+				<p class="title">Technology</p>
+				<ul class="skillsContainer">
+					<li>Web Frameworks - React, Svelte, Vite</li>
+					<li>Django</li>
+					<li>Git</li>
+					<li>PostgreSQL</li>
+				</ul>
 
-	{#if showHobbies}
-		<div class="hobbiesContent slide-up-fade-in">
-			<ul>
-				<li>Baking</li>
-				<li>Playing Piano</li>
-				<li>Drawing and Painting</li>
-				<li>Sewing and Cross-stitch</li>
-				<li>Gaming</li>
-				<li>Video Game Modding</li>
-			</ul>
-		</div>
-	{/if}
+				<p class="title">Other Skills</p>
+				<ul class="skillsContainer">
+					<li>Linux</li>
+					<li>Algorithms & Complexity</li>
+					<li>Data Analysis</li>
+					<li>Linear Algebra - Multi Dimensional Data Processing</li>
+				</ul>
+			</div>
+		{/if}
 
-	{#if showEdu}
-		<div class="educationContent slide-up-fade-in">
-			<p class="title">University</p>
-			<ul>
-				<li>Student Society - Treasurer 2023-2024</li>
-				<li>Peer Mentor</li>
-			</ul>
-			<p class="title">Sixth Form</p>
-			<ul>
-				<li>Digital Leader</li>
-				<li>Robotics Club Leader</li>
-				<li>Prefect</li>
-			</ul>
+		{#if showEdu}
+			<div class="educationContent slide-up-fade-in">
+				<p class="title">University</p>
+				<ul>
+					<li>Student Society - Treasurer 2023-2024</li>
+					<li>Peer Mentor</li>
+				</ul>
+				<p class="title">Sixth Form</p>
+				<ul>
+					<li>Digital Leader</li>
+					<li>Robotics Club Leader</li>
+					<li>Prefect</li>
+				</ul>
 
-			<p class="title">Other Achievements</p>
-			<ul>
-				<li>Grade 5 Piano - 2016</li>
-				<li>Level 3 Algebra Award - 2017</li>
-				<li>Brilliant Club 1st in Neuroscience - 2018</li>
-				<li>Brilliant Club 1st in Bayesian Statistics - 2019</li>
-			</ul>
-		</div>
-	{/if}
+				<p class="title">Other Achievements</p>
+				<ul>
+					<li>Grade 5 Piano - 2016</li>
+					<li>Level 3 Algebra Award - 2017</li>
+					<li>Brilliant Club 1st in Neuroscience - 2018</li>
+					<li>Brilliant Club 1st in Bayesian Statistics - 2019</li>
+				</ul>
+			</div>
+		{/if}
 
-	{#if showAbout}
-		<div class="aboutContent slide-up-fade-in">
-			<p><span>Hi! I'm Katerina and I'm {myAge} years old</span></p>
-			<p><span>Currently a 3rd year Computer Science BSc Student at Royal Holloway</span></p>
-			<p>
-				<span>
-					I discovered my passion for computers when I was 11 years old and have been teaching
-					myself how to code ever since
-				</span>
-			</p>
-			<p>
-				<span>
-					I also have a strong affinity for numbers and data, so have recently delved into more data
-					based projects
-				</span>
-			</p>
-		</div>
-	{/if}
+		{#if showHobbies}
+			<div class="hobbiesContent slide-up-fade-in">
+				<ul>
+					<li>Baking</li>
+					<li>Playing Piano</li>
+					<li>Drawing and Painting</li>
+					<li>Sewing and Cross-stitch</li>
+					<li>Gaming</li>
+					<li>Video Game Modding</li>
+				</ul>
+			</div>
+		{/if}
+	</div>
 </main>
 
 <style lang="scss">
@@ -264,7 +285,6 @@
 		color: #fff;
 		border-radius: 5px;
 		padding: 10px 30px;
-		font-family: 'Lato', sans-serif;
 		font-weight: 500;
 		background: transparent;
 		cursor: pointer;
@@ -405,7 +425,6 @@
 
 		p {
 			text-align: center;
-			font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 			padding: 2%;
 
 			span {
@@ -413,6 +432,28 @@
 				background-color: rgba(255, 255, 255, 0.5);
 				border-radius: 10px;
 			}
+		}
+	}
+
+	@media (max-width: 800px) {
+		.sectionbtn {
+			display: none;
+		}
+
+		.infoContainer {
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+			justify-content: center;
+		}
+
+		.skillsContent,
+		.hobbiesContent,
+		.educationContent,
+		.aboutContent {
+			box-shadow: 0 10px 20px rgba(133, 133, 133, 0.3), 0 10px 6px rgba(133, 133, 133, 0.3);
+			width: 100%;
+			max-width: 100%;
 		}
 	}
 </style>
