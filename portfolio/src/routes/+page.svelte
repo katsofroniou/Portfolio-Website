@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+
 </script>
 
 <svelte:head>
@@ -6,217 +7,101 @@
 	<meta name="description" content="Svelte demo app" />
 	<style type="text/css">
 		body {
-			--primary-rgb: rgb(255, 118, 164);
-			background-color: rgb(255, 227, 241);
+			background-color: #282a36;
+			margin: 0;
 		}
 	</style>
 </svelte:head>
 
 <main>
-	<section>
-		<div class="screen">
-			<div class="screen-img" />
-			<div class="screen-overlay" />
-			<div class="screen-content">
-				<div class="screen-user">
-					<span class="content" data-value="ABOUT">
-						<a href="/about">ABOUT</a>
-					</span>
-				</div>
-			</div>
+	<div class="header">
+		<div class="btn-container">
+			<ul class="btns">
+				<li><a href="">About</a></li>
+				<li><a href="">Projects</a></li>
+				<li><a href="">Contact Me</a></li>
+				<li>
+					<a href="">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
+							 aria-describedby="desc" role="img" width="20" height="20" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<title>Github</title>
+							<path data-name="layer2"
+								  d="M32 0a32.021 32.021 0 0 0-10.1 62.4c1.6.3 2.2-.7 2.2-1.5v-6c-8.9 1.9-10.8-3.8-10.8-3.8-1.5-3.7-3.6-4.7-3.6-4.7-2.9-2 .2-1.9.2-1.9 3.2.2 4.9 3.3 4.9 3.3 2.9 4.9 7.5 3.5 9.3 2.7a6.93 6.93 0 0 1 2-4.3c-7.1-.8-14.6-3.6-14.6-15.8a12.27 12.27 0 0 1 3.3-8.6 11.965 11.965 0 0 1 .3-8.5s2.7-.9 8.8 3.3a30.873 30.873 0 0 1 8-1.1 30.292 30.292 0 0 1 8 1.1c6.1-4.1 8.8-3.3 8.8-3.3a11.965 11.965 0 0 1 .3 8.5 12.1 12.1 0 0 1 3.3 8.6c0 12.3-7.5 15-14.6 15.8a7.746 7.746 0 0 1 2.2 5.9v8.8c0 .9.6 1.8 2.2 1.5A32.021 32.021 0 0 0 32 0z"
+								  fill="#202020"></path>
+							<path data-name="layer1" d="M12.1 45.9c-.1.2-.3.2-.5.1s-.4-.3-.3-.5.3-.2.6-.1c.2.2.3.4.2.5zm1.3 1.5a.589.589 0 0 1-.8-.8.631.631 0 0 1 .7.1.494.494 0 0 1 .1.7zm1.3 1.8a.585.585 0 0 1-.7-.3.6.6 0 0 1 0-.8.585.585 0 0 1 .7.3c.2.3.2.7 0 .8zm1.7 1.8c-.2.2-.5.1-.8-.1-.3-.3-.4-.6-.2-.8a.619.619 0 0 1 .8.1.554.554 0 0 1 .2.8zm2.4 1c-.1.3-.4.4-.8.3s-.6-.4-.5-.7.4-.4.8-.3c.3.2.6.5.5.7zm2.6.2c0 .3-.3.5-.7.5s-.7-.2-.7-.5.3-.5.7-.5c.4.1.7.3.7.5zm2.4-.4q0 .45-.6.6a.691.691 0 0 1-.8-.3q0-.45.6-.6c.5-.1.8.1.8.3z"
+								  fill="#202020"></path>
+						</svg>
+						GitHub
+					</a>
+				</li>
+			</ul>
 		</div>
-		<div class="screen">
-			<div class="screen-img" />
-			<div class="screen-overlay" />
-			<div class="screen-content">
-				<div class="screen-user">
-					<span class="content" data-value="CONTACTS">
-						<div class="social">
-							<a href="https://github.com/katsofroniou/">GITHUB</a>
-							<a href="https://www.linkedin.com/in/katerina-sofroniou-319aba244/">LINKEDIN</a>						</div>
-					</span>
-				</div>
-			</div>
+	</div>
+
+	<div class="main-container">
+		<div class="welcome">
+			<h1 class="welcome text">
+				Hello! I'm Kat
+			</h1>
 		</div>
-		<div class="screen">
-			<div class="screen-img" />
-			<div class="screen-overlay" />
-			<div class="screen-content">
-				<div class="screen-user">
-					<span class="content" data-value="PROJECTS">
-						<a href="/projects">PROJECTS</a>
-					</span>
-				</div>
-			</div>
-		</div>
-	</section>
+	</div>
 </main>
 
-<style>
-	.social {
+<style lang="scss">
+	$lighterbg: #6272a4;
+	$background: #282a36;
+	$pink: #ff79c6;
+	$purple: #9d7bd0;
+	$pinkhover: rgba(255, 121, 198, 0.5);
+
+	.header {
+		background-color: $purple;
 		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		height: 100%;
-	}
-
-	.social a {
-		margin: 1rem 0;
-	}
-
-	@keyframes pan-image {
-		0% {
-			background-position: 30% 35%;
-			background-size: 350%;
-		}
-		10% {
-			background-position: 32% 37%;
-			background-size: 350%;
-		}
-		20% {
-			background-position: 35.000001% 40%;
-			background-size: 350%;
-		}
-		30% {
-			background-position: 38% 43%;
-			background-size: 350%;
-		}
-		40% {
-			background-position: 41% 46%;
-			background-size: 350%;
-		}
-		50% {
-			background-position: 45% 50%;
-			background-size: 350%;
-		}
-		60% {
-			background-position: 49% 54%;
-			background-size: 350%;
-		}
-		70% {
-			background-position: 53% 58%;
-			background-size: 350%;
-		}
-		80% {
-			background-position: 57% 62%;
-			background-size: 350%;
-		}
-		90% {
-			background-position: 62% 67%;
-			background-size: 350%;
-		}
-		100% {
-			background-position: 66% 71%;
-			background-size: 350%;
-		}
-	}
-
-	section {
-		border: none;
-		display: flex;
-		gap: 1rem;
-		background-size: auto;
-	}
-
-	main {
-		margin: 0;
-		padding: 0;
-	}
-
-	.screen > .screen-content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		justify-content: flex-end;
-		flex-grow: 1;
-		gap: 4rem;
-		position: relative;
-		z-index: 3;
-		margin: 1rem;
-		padding-bottom: 3%;
-	}
-
-	.screen {
-		width: calc(25%);
-		margin-bottom: 2rem;
-		display: flex;
-		aspect-ratio: 10 / 16;
-		overflow: hidden;
-		position: relative;
-		z-index: 10;
-		border-radius: 1rem;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-	}
-
-	.screen::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-size: cover;
-		opacity: 0.6;
-		animation: 15s linear 0s infinite alternate pan-image;
-	}
-
-	.screen:nth-child(1)::before {
-		background-image: url('https://images.unsplash.com/photo-1616285720779-9e597265df0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=659&q=80');
-	}
-
-	.screen:nth-child(2)::before {
-		background-image: url('https://images.unsplash.com/photo-1463043254199-7a3efd782ad1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80');
-	}
-
-	.screen:nth-child(3)::before {
-		background-image: url('https://images.unsplash.com/photo-1587421976536-c2de1cac8bb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
-	}
-
-	.content a {
-		text-align: center;
-	}
-
-	.screen-user {
-		position: absolute;
-		display: flex;
-		top: 25%;
-		justify-content: center;
 		align-items: center;
-		height: 100%;
-	}
 
-	.screen-user a {
-		color: rgb(184, 12, 118);
-		text-decoration: none;
-		font-size: 2rem;
-	}
-
-	@media only screen and (min-width: 768px) {
-		/* Styles for tablet and desktop */
-		section {
+		.btn-container {
 			display: flex;
-			flex-wrap: wrap;
 			align-items: center;
-			justify-content: center;
-			height: 95vh;
-			padding: 0 2rem;
+			justify-content: flex-end;
+			gap: 10px;
+			flex: 1;
+			height: 100%;
+			transition: background-color 0.3s;
+		}
+
+		.btns {
+			list-style: none;
+			display: flex;
+			align-items: stretch;
+
+			li {
+				margin-right: 10px;
+				height: 100%;
+			}
+
+			a {
+				text-decoration: none;
+				font-size: 30px;
+				padding: 5px 10px;
+				border-radius: 10%;
+				color: white;
+				background-color: $lighterbg;
+				transition: color 0.3s;
+				height: 100%;
+
+				&:hover{
+					color: $purple;
+				}
+			}
 		}
 	}
 
-	@media screen and (max-width: 767px) {
-		section {
-			flex-direction: column;
-			align-items: center;
-		}
-
-		* {
-			box-sizing: border-box;
-			padding-top: 25%;
-		}
-
-		.screen {
-			width: 75%;
+	.main-container {
+		.welcome {
+			h1 {
+				color: white;
+			}
 		}
 	}
 </style>
