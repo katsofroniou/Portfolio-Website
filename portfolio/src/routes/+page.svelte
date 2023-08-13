@@ -1,5 +1,73 @@
 <script lang="ts">
+	import {onMount} from "svelte";
+	import { loadSlim } from "tsparticles-slim";
 
+	let ParticlesComponent: any;
+
+	onMount(async () => {
+		const module = await import("svelte-particles");
+
+		ParticlesComponent = module.default;
+	});
+
+	let particlesConfig = {
+		particles: {
+			number: {
+				value: 80,
+				density: {
+					enable: true,
+					value_area: 800,
+				},
+			},
+			color: {
+				value: "#fff",
+			},
+			shape: {
+				type: "circle",
+				stroke: {
+					width: 0,
+					color: "#fff",
+				},
+			},
+			opacity: {
+				value: 0.6,
+				random: true,
+				anim: {
+					enable: true,
+					speed: 0.5,
+					opacity_min: 0.1,
+				},
+			},
+			size: {
+				value: 3,
+				random: true,
+				anim: {
+					enable: false,
+					speed: 5,
+					size_min: 0.1,
+					sync: false,
+				},
+			},
+			links: {
+				enable: false,
+			},
+			move: {
+				enable: true,
+				speed: 0.5,
+				attract: {
+					enable: false,
+				},
+			},
+		},
+	};
+
+	let onParticlesLoaded = (event: any) => {
+		const particlesContainer = event.detail.particles;
+	};
+
+	let particlesInit = async (engine: any) => {
+		await loadSlim(engine);
+	};
 </script>
 
 <svelte:head>
@@ -45,6 +113,18 @@
 			</h1>
 		</div>
 	</div>
+
+	<div class="particles-container">
+		<svelte:component
+				this="{ParticlesComponent}"
+				id="tsparticles"
+				class="particles"
+				style=""
+				options="{particlesConfig}"
+				on:particlesLoaded="{onParticlesLoaded}"
+				particlesInit="{particlesInit}"
+		/>
+	</div>
 </main>
 
 <style lang="scss">
@@ -59,6 +139,8 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
+		position: relative;
+		z-index: 5;
 
 		.btn-container {
 			display: flex;
@@ -97,7 +179,15 @@
 		}
 	}
 
+	.particles-container {
+		position: relative;
+		z-index: 1;
+	}
+
 	.main-container {
+		position: relative;
+		z-index: 2;
+
 		.welcome {
 			h1 {
 				color: white;
