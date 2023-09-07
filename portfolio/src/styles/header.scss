@@ -1,8 +1,43 @@
+
 .header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: #e9d6f3;
-  top: 0;
-  position: fixed;
-  width: 100%;
   z-index: 5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5% 0;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 10%;
+}
+
+.name {
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  padding-right: 10%;
+  position: relative;
+
+  .social {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-right: 15px;
+    }
+  }
+}
+
+.name {
+  font-size: 1.5rem;
+  padding-left: 10%;
 }
