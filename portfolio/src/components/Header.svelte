@@ -21,7 +21,10 @@
         </div>
 
         <div class="dl-toggle">
-            <input type="checkbox">
+            <label>
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
         </div>
     </div>
 </main>
